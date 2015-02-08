@@ -8,3 +8,6 @@
 
 \clearpage
 
+# Introduction
+
+Here is your introduction. It should describe clearly the rationale for the study being done and the previous work related with the study. It should also tell readers about your specific hypothese/questions being addressed. Citations will be like this [@adair_single-pool_2010], or [e.g., @clark_loss_2008], or [@eriksson_seed_1993;@williamson_dissolved_1999]
