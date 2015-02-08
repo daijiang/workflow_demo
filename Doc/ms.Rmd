@@ -21,3 +21,66 @@ Here is the method section. You can include equations easily. For inline equatio
 \text{var}(X) = p(1-p)
 \end{equation}
 
+## Results
+
+Insert tables:
+
+```{r table,results='asis',echo=FALSE}
+load("../R/.RData")
+library(knitr)
+kable(sprich)
+```
+
+Or put results inline, e.g. the mean species richness is `r meansprich`.
+
+<!-- 
+Or you can type tables by hand:
+
+Col A             Col B       Col C                   Col D
+------------      -------     ------------------      ------------------
+row 1             190         $112 \pm 2$             $233 \pm 3$
+$\eta$            0.13        0.12                    0.12
+$\eta^2$          0.14        0.13                    0.50
+$\eta^3$          0.15        0.31                    0.52
+
+Using `xtable` package in R:
+
+```{r echo=F,results='asis',warning=F,message=F}
+library(xtable)
+data(tli)
+## Demonstrate aov
+ ## Taken from help(aov) in R 1.1.1
+ ## From Venables and Ripley (1997) p.210.
+ N <- c(0,1,0,1,1,1,0,0,0,1,1,0,1,1,0,0,1,0,1,0,1,1,0,0)
+ P <- c(1,1,0,0,0,1,0,1,1,1,0,0,0,1,0,1,1,0,0,1,0,1,1,0)
+ K <- c(1,0,0,1,0,1,1,0,0,1,0,1,0,1,1,0,0,0,1,1,1,0,1,0)
+ yield <- c(49.5,62.8,46.8,57.0,59.8,58.5,55.5,56.0,62.8,55.8,69.5,55.0,
++            62.0,48.8,45.5,44.2,52.0,51.5,49.8,48.8,57.2,59.0,53.2,56.0)
+ npk <- data.frame(block=gl(6,4), N=factor(N), P=factor(P), K=factor(K), yield=yield)
+ npk.aov <- aov(yield ~ block + N*P*K, npk)
+ op <- options(contrasts=c("contr.helmert", "contr.treatment"))
+ npk.aovE <- aov(yield ~  N*P*K + Error(block), npk)
+ options(op)
+
+ xsum <- xtable(summary(npk.aov))
+print(xsum,
+      floating=F,
+      hline.after=NULL,
+      add.to.row=list(pos=list(-1,0, nrow(xsum)),
+      command=c(
+           '\\toprule\n',
+          '\\midrule\n',
+           '\\bottomrule\n')))
+```
+ -->
+
+How about figures? We illustrate this in Fig. \ref{f:plot}. 
+
+\clearpage
+
+[f:plot]: Figs/plot.pdf
+![Caption here.\label{f:plot}][f:plot]
+
+\clearpage
+
+# References
