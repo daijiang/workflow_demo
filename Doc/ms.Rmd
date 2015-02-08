@@ -1,0 +1,10 @@
+% Relationships between environmental variabels and species richness
+% D. Li \and D. Waller
+% Working paper -- \today
+
+**Running headline**: Environment and species richness
+
+**Abstract**: Your awesome abstract here.
+
+\clearpage
+
