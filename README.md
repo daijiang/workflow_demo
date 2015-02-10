@@ -16,5 +16,5 @@ Some prerequires:
 - `Pandoc`: for file types converting, e.g. convert markdown file to pdf or docx files or html files.
 	+ if you have `Rstudio` installed, you can also use pandoc shipped with Rstudio: 
 
-		sudo ln -s /usr/lib/rstudio/bin/pandoc/pandoc /usr/local/bin
+		sudo ln -s /usr/lib/rstudio/bin/pandoc/pandoc /usr/local/bin   
 		sudo ln -s /usr/lib/rstudio/bin/pandoc/pandoc-citeproc /usr/local/bin
