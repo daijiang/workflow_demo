@@ -6,8 +6,8 @@ library(tidyr)
 library(ggplot2)
 
 # read data into R
-under2012=read.csv("Data/Raw_data/under2012.csv",stringsAsFactors=F)
-envi = read.csv("Data/Raw_data/envi.csv")
+under2012=read.csv("../Data/Raw_data/under2012.csv",stringsAsFactors=F)
+envi = read.csv("../Data/Raw_data/envi.csv")
 
 # data clean: you should clean your data with scripts instead of doing it 
 # in Excel. By using scripts, you recorded all of your history about data 
@@ -39,8 +39,10 @@ envi.long = gather(data = envi, key = envi, value = value, -Plot)
     # wide table to long table
 envi.sprich = merge(envi.long, sprich, by = "Plot")
 
+envi.aov = aov(sprich ~ pH + shade, data = merge(envi, sprich, by = "Plot"))
+
 # plot it
 pl = ggplot(data = envi.sprich, aes(x = value, y = sprich)) +
   geom_point() + geom_smooth(method = "lm") +
   facet_wrap(~envi, scales = "free_x") + theme_bw()
-ggsave(filename = "Figs/plot.pdf", pl, width = 6, height = 6, units = "in")
+ggsave(filename = "../Figs/plot.pdf", pl, width = 6, height = 6, units = "in")

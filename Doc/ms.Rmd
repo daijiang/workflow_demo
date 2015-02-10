@@ -12,6 +12,8 @@
 
 Here is your introduction. It should describe clearly the rationale for the study being done and the previous work related with the study. It should also tell readers about your specific hypothese/questions being addressed. Citations will be like this [@adair_single-pool_2010], or [e.g., @clark_loss_2008], or [@eriksson_seed_1993;@williamson_dissolved_1999]
 
+Here is the second paragraph of the introduction. 
+
 
 # Methods
 
@@ -23,18 +25,45 @@ Here is the method section. You can include equations easily. For inline equatio
 
 ## Results
 
-Insert tables:
 
-```{r table,results='asis',echo=FALSE}
-load("../R/.RData")
+#### Insert tables by `kable` in knitr package in R
+
+
+```{r table,results='asis',echo=FALSE,message=F,warning=F}
+# load("../R/.RData")
+source("../R/rcode.R")
 library(knitr)
 kable(sprich)
 ```
 
-Or put results inline, e.g. the mean species richness is `r meansprich`.
+Put results inline, e.g. the mean species richness is `r meansprich`.
 
-<!-- 
-Or you can type tables by hand:
+#### Insert tables by `xtable` package in R
+
+
+Show as Table. \ref{t:anova}:
+
+```{r echo=F,results='asis',warning=F,message=F}
+library(xtable)
+envi.summ = xtable(summary(envi.aov),label = "t:anova", caption = "Caption here")
+print(envi.summ,
+		caption.placement = "top",
+	  floating=T,
+	  hline.after=NULL,
+	  comment = FALSE,
+	  add.to.row=list(pos=list(-1,0, nrow(envi.summ)),
+	  command=c(
+		   '\\toprule\n',
+		  '\\midrule\n',
+		   '\\bottomrule\n')))
+```
+
+#### Insert tables by hand
+
+
+Show as Table. \ref{t:byhand}:
+
+Table: Caption here. \label{t:byhand}
 
 Col A             Col B       Col C                   Col D
 ------------      -------     ------------------      ------------------
@@ -43,36 +72,8 @@ $\eta$            0.13        0.12                    0.12
 $\eta^2$          0.14        0.13                    0.50
 $\eta^3$          0.15        0.31                    0.52
 
-Using `xtable` package in R:
 
-```{r echo=F,results='asis',warning=F,message=F}
-library(xtable)
-data(tli)
-## Demonstrate aov
- ## Taken from help(aov) in R 1.1.1
- ## From Venables and Ripley (1997) p.210.
- N <- c(0,1,0,1,1,1,0,0,0,1,1,0,1,1,0,0,1,0,1,0,1,1,0,0)
- P <- c(1,1,0,0,0,1,0,1,1,1,0,0,0,1,0,1,1,0,0,1,0,1,1,0)
- K <- c(1,0,0,1,0,1,1,0,0,1,0,1,0,1,1,0,0,0,1,1,1,0,1,0)
- yield <- c(49.5,62.8,46.8,57.0,59.8,58.5,55.5,56.0,62.8,55.8,69.5,55.0,
-+            62.0,48.8,45.5,44.2,52.0,51.5,49.8,48.8,57.2,59.0,53.2,56.0)
- npk <- data.frame(block=gl(6,4), N=factor(N), P=factor(P), K=factor(K), yield=yield)
- npk.aov <- aov(yield ~ block + N*P*K, npk)
- op <- options(contrasts=c("contr.helmert", "contr.treatment"))
- npk.aovE <- aov(yield ~  N*P*K + Error(block), npk)
- options(op)
-
- xsum <- xtable(summary(npk.aov))
-print(xsum,
-      floating=F,
-      hline.after=NULL,
-      add.to.row=list(pos=list(-1,0, nrow(xsum)),
-      command=c(
-           '\\toprule\n',
-          '\\midrule\n',
-           '\\bottomrule\n')))
-```
- -->
+#### Figures
 
 How about figures? We illustrate this in Fig. \ref{f:plot}. 
 
