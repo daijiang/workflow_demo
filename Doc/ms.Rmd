@@ -1,6 +1,38 @@
-% Relationships between environmental variabels and species richness
-% D. Li \and D. Waller
-% Working paper -- \today
+---
+title: "Your Awesome Title"
+author: "Author One and Author Two"
+date: '`r format(Sys.time())`'
+output:
+  bookdown::pdf_document2:
+    includes:
+      before_body: doc_prefix.tex
+      in_header: preamble.tex
+    keep_tex: yes
+    latex_engine: xelatex
+    number_sections: no
+    toc: no
+  bookdown::html_document2:
+    number_sections: no
+    theme: readable
+    toc: yes
+  bookdown::tufte_html2:
+    number_sections: no
+    toc: yes
+  bookdown::word_document2: null
+fontsize: 12pt
+link-citations: yes
+csl: oikos.csl
+bibliography: ref.bib
+---
+
+```{r knitr_options, echo=FALSE}
+library(knitr)
+# rstudio will set the folder where .Rmd file seats as work directory
+# set it back to the folder where .Rproj seats
+opts_knit$set(root.dir = normalizePath("../")) 
+opts_chunk$set(fig.align='center', cache=F, warning = FALSE, message = T, echo = FALSE)
+options(digits = 3, width = 88)
+```
 
 **Running headline**: Environment and species richness
 
@@ -10,7 +42,7 @@
 
 # Introduction
 
-Here is your introduction. It should describe clearly the rationale for the study being done and the previous work related with the study. It should also tell readers about your specific hypothese/questions being addressed. Citations will be like this [@adair_single-pool_2010], or [e.g., @clark_loss_2008], or [@eriksson_seed_1993;@williamson_dissolved_1999]
+Here is your introduction. It should describe clearly the rationale for the study being done and the previous work related with the study. It should also tell readers about your specific hypothese/questions being addressed. Citations will be like this [@adair_single-pool_2010], or [e.g., @clark_loss_2008], or [@eriksson_seed_1993; @williamson_dissolved_1999]
 
 Here is the second paragraph of the introduction. 
 
@@ -19,21 +51,19 @@ Here is the second paragraph of the introduction.
 
 Here is the method section. You can include equations easily. For inline equations, use $\text{var}(X) = p(1-p)$. For display equation, use
 
-\begin{equation}
-\text{var}(X) = p(1-p)
-\end{equation}
+$$\text{var}(X) = p(1-p)$$
 
 ## Results
 
 
-#### Insert tables by `kable` in knitr package in R
+#### Tables
+
+Insert tables by `kable` in knitr package in R. Then cross-reference it back with: see Table \@ref(tab:tableName).
 
 
-```{r table,results='asis',echo=FALSE,message=F,warning=F}
-# load("../R/.RData")
-source("../R/rcode.R")
-library(knitr)
-kable(sprich)
+```{r tableName,results='asis',echo=FALSE, message=F, warning=F}
+source("R/rcode.R")
+knitr::kable(sprich, booktabs = T, caption = "Caption here.")
 ```
 
 Put results inline, e.g. the mean species richness is `r meansprich`.
@@ -61,9 +91,9 @@ print(envi.summ,
 #### Insert tables by hand
 
 
-Show as Table. \ref{t:byhand}:
+Show as Table. \@ref(tab:byhand):
 
-Table: Caption here. \label{t:byhand}
+Table: (#tab:byhand) Caption here.
 
 Col A             Col B       Col C                   Col D
 ------------      -------     ------------------      ------------------
@@ -75,12 +105,22 @@ $\eta^3$          0.15        0.31                    0.52
 
 #### Figures
 
-How about figures? We illustrate this in Fig. \ref{f:plot}. 
+Insert figure by code chunk. And cross-ref it back as Figure \@ref(fig:figName).
 
-\clearpage
+```{r figName, fig.width=7, fig.asp=1, fig.cap="Your caption here."}
+ggplot(data = envi.sprich, aes(x = value, y = sprich)) +
+  geom_point() + geom_smooth(method = "lm") +
+  facet_wrap(~envi, scales = "free_x") + theme_bw()
+```
 
-[f:plot]: Figs/plot.pdf
-![Caption here.\label{f:plot}][f:plot]
+
+Or if you already have the figure: 
+And cite it as Figure \@ref(fig:fig2).
+
+```{r fig2, out.width='70%', fig.cap="Caption here."}
+knitr::include_graphics(path = paste0(normalizePath(getwd()), "/Figs/plot.pdf"))
+```
+
 
 \clearpage
 

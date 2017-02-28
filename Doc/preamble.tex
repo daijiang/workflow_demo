@@ -1,0 +1,32 @@
+\usepackage{geometry}
+\geometry{verbose,letterpaper,margin=2.45cm}
+
+% \usepackage[breaklinks=true,pdfstartview=FitH,citecolor=blue]{hyperref}
+\hypersetup{colorlinks,%
+	citecolor=blue,%
+	filecolor=red,%
+	linkcolor=blue,%
+	urlcolor=red,%
+	pdfstartview=FitH}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{booktabs}
+
+\usepackage{setspace}
+\doublespacing
+
+% \setstretch{1.8999999999999999}
+
+\usepackage{lineno}
+\linenumbers
+
+\renewcommand{\rmdefault}{cmr}
+
+
+% flush left while keep identation
+\makeatletter
+\newcommand\iraggedright{%
+  \let\\\@centercr\@rightskip\@flushglue \rightskip\@rightskip
+  \leftskip\z@skip}
+\makeatother
