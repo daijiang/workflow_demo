@@ -122,6 +122,6 @@ knitr::include_graphics(path = paste0(normalizePath(getwd()), "/Figs/plot.pdf"))
 ```
 
 
-\clearpage
+More details can be found at [here](https://bookdown.org/yihui/bookdown/).
 
 # References
