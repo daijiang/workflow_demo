@@ -1,6 +1,10 @@
 *~
 *#
 
+# mac things
+.DS_Store
+*/.DS_Store
+
 # rstudio #
 ###########
 .Rproj.user
