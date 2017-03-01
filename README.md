@@ -23,6 +23,7 @@ Some prerequires:
 Contributions to this demo are more than welcome. Just fork and make changes, then file a pull request. Thanks!
 
 ```
+# https://gist.github.com/stevenworthington/3178163
 # ipak function: install and load multiple R packages.
 # check to see if packages are installed. Install them if they are not, then load them into the R session.
 
