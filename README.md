@@ -21,3 +21,18 @@ Some prerequires:
 
 ## Contributing
 Contributions to this demo are more than welcome. Just fork and make changes, then file a pull request. Thanks!
+
+```
+# ipak function: install and load multiple R packages.
+# check to see if packages are installed. Install them if they are not, then load them into the R session.
+
+ipak <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+
+pkgs = c("rmarkdown", "bookdown", "tidyverse", "xtable", "tufte")
+ipak(pkgs)
+```
