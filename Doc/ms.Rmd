@@ -5,10 +5,10 @@ date: '`r format(Sys.time())`'
 output:
   bookdown::pdf_document2:
     includes:
-      before_body: doc_prefix.tex
-      in_header: preamble.tex
+      before_body: ../template/doc_prefix.tex
+      in_header: ../template/preamble.tex
     keep_tex: yes
-    latex_engine: xelatex
+    latex_engine: pdflatex
     number_sections: no
     toc: no
   bookdown::html_document2:
@@ -21,8 +21,8 @@ output:
   bookdown::word_document2: null
 fontsize: 12pt
 link-citations: yes
-csl: oikos.csl
-bibliography: ref.bib
+csl: ../template/oikos.csl
+bibliography: ../template/ref.bib
 ---
 
 ```{r knitr_options, echo=FALSE}

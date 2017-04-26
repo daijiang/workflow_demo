@@ -1,0 +1,40 @@
+\usepackage{geometry}
+\geometry{verbose,letterpaper,margin=2.45cm}
+
+% \usepackage[breaklinks=true,pdfstartview=FitH,citecolor=blue]{hyperref}
+\hypersetup{colorlinks,%
+	citecolor=blue,%
+	filecolor=red,%
+	linkcolor=blue,%
+	urlcolor=red,%
+	pdfstartview=FitH}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{textgreek}
+\usepackage[greek,english]{babel}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage[osf]{libertine}
+\usepackage{libertinust1math}
+\usepackage{inconsolata}
+
+\usepackage{booktabs}
+
+\usepackage{setspace}
+\doublespacing
+
+% \setstretch{1.8999999999999999}
+
+\usepackage{lineno}
+\linenumbers
+
+% \renewcommand{\rmdefault}{cmr}
+
+
+% flush left while keep identation
+\makeatletter
+\newcommand\iraggedright{%
+  \let\\\@centercr\@rightskip\@flushglue \rightskip\@rightskip
+  \leftskip\z@skip}
+\makeatother
