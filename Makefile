@@ -8,3 +8,5 @@ Doc/ms.html: Doc/ms.Rmd
 	
 Doc/ms.pdf: Doc/ms.Rmd
 	Rscript -e 'rmarkdown::render("Doc/ms.Rmd", output_format = "bookdown::pdf_document2", output_file = "ms.pdf")'
+
+# you can add md.docx similarly.

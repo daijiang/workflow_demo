@@ -10,7 +10,7 @@ This repository has the following file folders:
 
 Some prerequires:
 
-- `GNU Make`: to document file dependencies and automate workflow.
+- `GNU Make`: to document file dependencies and automate workflow. In terminal, you can just type `make` to render the rmarkdown file to pdf and html.
 - `R`: for data clean and analyses.
 - `LaTeX`: for fine control of typesetting and pdf generation.
 - `Pandoc`: for file types converting, e.g. convert markdown file to pdf or docx files or html files.
@@ -20,6 +20,7 @@ Some prerequires:
 			sudo ln -s /usr/lib/rstudio/bin/pandoc/pandoc-citeproc /usr/local/bin
 
 ## Contributing
+
 Contributions to this demo are more than welcome. Just fork and make changes, then file a pull request. Thanks!
 
 ```
