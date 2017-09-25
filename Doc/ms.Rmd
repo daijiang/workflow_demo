@@ -20,6 +20,7 @@ output:
     toc: yes
   bookdown::word_document2: null
 fontsize: 12pt
+linestretch: 1.5
 link-citations: yes
 csl: ../template/oikos.csl
 bibliography: ../template/ref.bib
