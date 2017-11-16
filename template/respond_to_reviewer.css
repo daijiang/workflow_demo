@@ -1,0 +1,41 @@
+body {
+  color: blue;
+  font-size: 20px
+}
+
+blockquote {
+  padding: 10px 20px;
+  margin: 0 0 20px;
+  font-size: 18.5px;
+  color: DimGray;
+  border-left: 5px solid gray;
+}
+
+h1,
+.h1 {
+  color: black;
+}
+h2,
+.h2 {
+  color: black;
+}
+h3,
+.h3 {
+  color: black;
+}
+h4,
+.h4 {
+  color: black;
+}
+h5,
+.h5 {
+  color: black;
+}
+h6,
+.h6 {
+  color: black;
+}
+
+.table {
+	width: auto;
+}

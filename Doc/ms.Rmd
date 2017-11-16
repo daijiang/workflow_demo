@@ -22,7 +22,7 @@ output:
 fontsize: 12pt
 linestretch: 1.5
 link-citations: yes
-csl: ../template/oikos.csl
+csl: https://raw.githubusercontent.com/citation-style-language/styles/master/ecology.csl
 bibliography: ../template/ref.bib
 ---
 
@@ -33,6 +33,14 @@ library(knitr)
 opts_knit$set(root.dir = normalizePath("../")) 
 opts_chunk$set(fig.align='center', cache=F, warning = FALSE, message = T, echo = FALSE)
 options(digits = 3, width = 88)
+
+# download template files if not available
+tpl_1 = 'https://raw.githubusercontent.com/daijiang/workflow_demo/master/template/preamble.tex'
+tpl_2 = 'https://raw.githubusercontent.com/daijiang/workflow_demo/master/template/doc_prefix.tex'
+# bib_1 = 'https://raw.githubusercontent.com/daijiang/workflow_demo/master/template/ref.bib'
+# change directory accordingly
+if(!file.exists(tpl_1f <- '../template/preamble.tex')) download.file(tpl_1, tpl_1f)
+if(!file.exists(tpl_2f <- '../template/doc_prefix.tex')) download.file(tpl_2, tpl_2f)
 ```
 
 **Running headline**: Environment and species richness

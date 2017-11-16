@@ -1,0 +1,91 @@
+---
+title: "Response to reviewers"
+author: "Daijiang Li"
+date: '`r format(Sys.time(), "%d %B, %Y")`'
+output:
+  html_document:
+    css: ../template/respond_to_reviewer.css
+    keep_md: no
+    theme: readable
+    toc: yes
+  pdf_document:
+    highlight: zenburn
+    keep_tex: no
+    template: ../template/respond_to_reviewer.tex
+    toc: no
+    toc_depth: 3
+    latex_engine: xelatex
+  word_document: default
+---
+
+```{r knitr_options, echo=FALSE}
+library(knitr)
+opts_chunk$set(fig.align='center', cache=TRUE, warning = FALSE, message = FALSE)
+# load(".RData")
+options(digits = 3, width = 88)
+
+# download template files if not available
+tpl_1 = 'https://raw.githubusercontent.com/daijiang/workflow_demo/master/template/respond_to_reviewer.tex'
+tpl_2 = 'https://raw.githubusercontent.com/daijiang/workflow_demo/master/template/respond_to_reviewer.css'
+# change directory accordingly
+if(!file.exists(tpl_1f <- '../template/respond_to_reviewer.tex')) download.file(tpl_1, tpl_1f)
+if(!file.exists(tpl_2f <- '../template/respond_to_reviewer.css')) download.file(tpl_2, tpl_2f)
+```
+
+Dear Editors,   
+
+Thank you for your help with our manuscript. The constructive comments from reviewers and Editors have greatly improved it.
+
+Sincerely,
+
+Daijiang Li
+
+
+>09-Nov-2017
+
+>Dear Dr. Li
+
+>We have now completed the review process on your manuscript ....
+
+>You will find the reports of the referees (if any), and the comments of the handling editor, ...
+
+>I invite you to 
+
+>Thank you again for submitting to ....
+
+>Yours sincerely
+
+>Editor-in-chief
+
+----------------
+
+### EDITOR-IN-CHIEF'S COMMENTS TO AUTHORS
+
+--
+
+----------------
+
+### EDITOR'S COMMENTS TO AUTHORS
+
+>Editor:   
+>Comments to the Author:
+>Dear authors
+
+>Thanks for your resubmission, ...
+
+>Best wishes,
+>Editor...
+
+We have added qualifiers in these subsections as suggested.
+
+>L299 change ‘reveal’ to ‘suggest’ or ‘imply’ or similar.
+
+Changed 'reveal' to "suggest."
+
+
+### REVIEWER COMMENTS TO AUTHORS
+
+---------------
+
+>If there are no comments above, the reviewer may have chosen to upload a file. Please check ScholarOne Manuscripts for any attached files, which may be found at the end of the decision letter in your author centre under 'Manuscripts with decisions'.
+
