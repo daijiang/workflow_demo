@@ -8,7 +8,7 @@ output:
       before_body: ../template/doc_prefix.tex
       in_header: ../template/preamble.tex
     keep_tex: yes
-    latex_engine: pdflatex
+    latex_engine: xelatex
     number_sections: no
     toc: no
   bookdown::html_document2:
@@ -24,6 +24,8 @@ linestretch: 1.5
 link-citations: yes
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/ecology.csl
 bibliography: ../template/ref.bib
+always_allow_html: yes
+links-as-notes: true
 ---
 
 ```{r knitr_options, echo=FALSE}
@@ -31,8 +33,10 @@ library(knitr)
 # rstudio will set the folder where .Rmd file seats as work directory
 # set it back to the folder where .Rproj seats
 opts_knit$set(root.dir = normalizePath("../")) 
-opts_chunk$set(fig.align='center', cache=F, warning = FALSE, message = T, echo = FALSE)
-options(digits = 3, width = 88)
+opts_chunk$set(fig.align = 'center', cache = FALSE, warning = FALSE,
+  message = TRUE, echo = FALSE)
+options(digits = 3, width = 88, knitr.graphics.auto_pdf = TRUE,
+        knitr.kable.NA = '')
 
 # download template files if not available
 tpl_1 = 'https://raw.githubusercontent.com/daijiang/workflow_demo/master/template/preamble.tex'
@@ -41,6 +45,11 @@ tpl_2 = 'https://raw.githubusercontent.com/daijiang/workflow_demo/master/templat
 # change directory accordingly
 if(!file.exists(tpl_1f <- '../template/preamble.tex')) download.file(tpl_1, tpl_1f)
 if(!file.exists(tpl_2f <- '../template/doc_prefix.tex')) download.file(tpl_2, tpl_2f)
+if(knitr::is_latex_output() | knitr::is_html_output()){
+  library(kableExtra)
+} else {
+  options(kableExtra.auto_format = FALSE) # for docx
+}
 ```
 
 **Running headline**: Environment and species richness
