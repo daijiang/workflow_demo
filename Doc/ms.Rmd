@@ -1,12 +1,12 @@
 ---
 title: "Your Awesome Title"
-author: "Author One and Author Two"
+author: "Author One^1^* and Author Two^2^"
 date: '`r format(Sys.time())`'
 output:
   bookdown::pdf_document2:
     includes:
-      before_body: ../template/doc_prefix.tex
-      in_header: ../template/preamble.tex
+      before_body: template/doc_prefix.tex
+      in_header: template/preamble.tex
     keep_tex: yes
     latex_engine: xelatex
     number_sections: no
@@ -18,14 +18,18 @@ output:
   bookdown::tufte_html2:
     number_sections: no
     toc: yes
-  bookdown::word_document2: null
+  bookdown::word_document2:
+    toc: no
+    reference_docx: template/nature_style.docx
+    number_sections: no
 fontsize: 12pt
 linestretch: 1.5
 link-citations: yes
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/ecology.csl
-bibliography: ../template/ref.bib
+bibliography: ref.bib
 always_allow_html: yes
 links-as-notes: true
+notes-after-punctuation: false
 ---
 
 ```{r knitr_options, echo=FALSE}
@@ -34,23 +38,37 @@ library(knitr)
 # set it back to the folder where .Rproj seats
 opts_knit$set(root.dir = normalizePath("../")) 
 opts_chunk$set(fig.align = 'center', cache = FALSE, warning = FALSE,
-  message = TRUE, echo = FALSE)
-options(digits = 3, width = 88, knitr.graphics.auto_pdf = TRUE,
+  message = TRUE, echo = FALSE, fig.pos = "H", out.extra = "")
+options(digits = 3, width = 88,
+        # use pdf file automatically when compile to pdf
+        knitr.graphics.auto_pdf = TRUE, 
         knitr.kable.NA = '')
 
 # download template files if not available
-tpl_1 = 'https://raw.githubusercontent.com/daijiang/workflow_demo/master/template/preamble.tex'
-tpl_2 = 'https://raw.githubusercontent.com/daijiang/workflow_demo/master/template/doc_prefix.tex'
+tpl_1 = 'https://raw.githubusercontent.com/daijiang/workflow_demo/master/Doc/template/preamble.tex'
+tpl_2 = 'https://raw.githubusercontent.com/daijiang/workflow_demo/master/Doc/template/doc_prefix.tex'
+tpl_3 = 'https://raw.githubusercontent.com/daijiang/workflow_demo/master/Doc/template/nature_style.docx'
 # bib_1 = 'https://raw.githubusercontent.com/daijiang/workflow_demo/master/template/ref.bib'
 # change directory accordingly
-if(!file.exists(tpl_1f <- '../template/preamble.tex')) download.file(tpl_1, tpl_1f)
-if(!file.exists(tpl_2f <- '../template/doc_prefix.tex')) download.file(tpl_2, tpl_2f)
+if(!file.exists(tpl_1f <- 'template/preamble.tex')) download.file(tpl_1, tpl_1f)
+if(!file.exists(tpl_2f <- 'template/doc_prefix.tex')) download.file(tpl_2, tpl_2f)
+if(!file.exists(tpl_3f <- 'template/nature_style.docx')) download.file(tpl_3, tpl_3f)
+
 if(knitr::is_latex_output() | knitr::is_html_output()){
   library(kableExtra)
 } else {
   options(kableExtra.auto_format = FALSE) # for docx
 }
 ```
+
+\footnotesize 
+
+^1^Department of Biological Sciences, Louisiana State University, Baton Rouge, LA, USA  
+^2^Center for Computation & Technology, Louisiana State University, Baton Rouge, LA, USA
+
+\* **Corresponding author**, email: daijianglee@gmail.com; 125 Life Science Building, Baton Rouge, LA 70803
+
+\normalsize
 
 **Running headline**: Environment and species richness
 
@@ -78,10 +96,15 @@ $$\text{var}(X) = p(1-p)$$
 
 Insert tables by `kable` in knitr package in R. Then cross-reference it back with: see Table \@ref(tab:tableName).
 
+(ref:captionTable1) **Model coefficients of leaf senescence based on in situ data**. No space at the end of this line!!
 
 ```{r tableName,results='asis',echo=FALSE, message=F, warning=F}
 source("R/rcode.R")
-knitr::kable(sprich, booktabs = T, caption = "Caption here.")
+# linesep = c('', '', '', '', '', '\\addlinespace') 
+# can be used within kable to specify linespace
+knitr::kable(sprich, booktabs = T, caption = '(ref:captionTable1)')  %>%
+ kableExtra::kable_styling(bootstrap_options = c("striped", "scale_down", "condensed", "hover"), 
+                           latex_options = c("striped", "HOLD_position")) # , "scale_down"
 ```
 
 Put results inline, e.g. the mean species richness is `r meansprich`.
@@ -125,21 +148,51 @@ $\eta^3$          0.15        0.31                    0.52
 
 Insert figure by code chunk. And cross-ref it back as Figure \@ref(fig:figName).
 
-```{r figName, fig.width=7, fig.asp=1, fig.cap="Your caption here."}
+(ref:captionFig1) **No - or _ in the caption ref.** No space at the end of this line!
+
+```{r figName, fig.width=7, fig.asp=1, fig.cap="(ref:captionFig1)"}
 ggplot(data = envi.sprich, aes(x = value, y = sprich)) +
   geom_point() + geom_smooth(method = "lm") +
-  facet_wrap(~envi, scales = "free_x") + theme_bw()
+  facet_wrap(~envi, scales = "free_x") + 
+  theme_bw()
 ```
 
 
 Or if you already have the figure: 
+
 And cite it as Figure \@ref(fig:fig2).
 
-```{r fig2, out.width='70%', fig.cap="Caption here."}
+(ref:captionFig2) **No - or _ in the caption ref.** No space at the end of this line!
+
+```{r fig2, out.width='70%', fig.cap="(ref:captionFig2)"}
 knitr::include_graphics(path = paste0(normalizePath(getwd()), "/Figs/plot.pdf"))
 ```
-
 
 More details can be found at [here](https://bookdown.org/yihui/bookdown/).
 
 # References
+
+<div id="refs"></div>
+
+\clearpage
+
+\setcounter{page}{0}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\renewcommand {\thetable}{S\arabic{table}}
+\renewcommand {\thefigure}{S\arabic{figure}}
+
+
+# Supporting Information
+
+## Figures
+
+(ref:captionFigS1) **No - or _ in the caption ref.** No space at the end of this line!
+
+```{r figS1, out.width='70%', fig.cap="(ref:captionFigS1)"}
+knitr::include_graphics(path = paste0(normalizePath(getwd()), "/Figs/plot.pdf"))
+```
